@@ -1,27 +1,67 @@
-# Role Name
+# mattermost-github-integration
 
-A brief description of the role goes here.
+This role sets up a mattermost github integration service which posts changes of an organization or repository to a mattermost channel.
 
 
 ## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here.
-For instance, if the role uses the EC2 module or depends on other Ansible roles, it may be a good idea to mention in this section that the boto package is required.
+This role works standalone
 
 
 ## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role.
-Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Name                                           |         Required         | Default                              | Description                                                         |
+|:-----------------------------------------------|:------------------------:|:-------------------------------------|:--------------------------------------------------------------------|
+| `global_cache_dir`                             |    :heavy_check_mark:    |                                      | Cache directory to download roundcube files to                      |
+| `mattermost_github_integration_install_path`   | :heavy_multiplication_x: | `/opt/mattermost-github-integration` | Path to install the server on                                       |
+| `mattermost_github_integration_secret`         | :heavy_multiplication_x: | `None`                               | Secret that is used to authenticate between github and your server. |
+| `mattermost_github_integration_server_hook`    | :heavy_multiplication_x: | `/`                                  | The relativ url where the server is listing.                        |
+| `mattermost_github_integration_server_address` | :heavy_multiplication_x: | `0.0.0.0`                            | Adress of the server                                                |
+| `mattermost_github_integration_server_port`    | :heavy_multiplication_x: | `5000`                               | Port under which the server listens to webooks from github          |
+| `mattermost_github_integration_username`       | :heavy_multiplication_x: | `Github`                             | Name under which username the post should show up in mattermost     |
+| `mattermost_github_integration_icon_url`       | :heavy_multiplication_x: | ` `                                  | Url to icon file which should show up in mattermost                 |
+| `mattermost_github_integration_webhook_urls`   | :heavy_multiplication_x: | `[]`                                 | List of webhooks to post to. See below for more information         |
+| `mattermost_github_integration_show_avatars`   | :heavy_multiplication_x: | `true`                               | show github avatars in the message that is posted                   |
+| `mattermost_github_integration_ignore_actions` | :heavy_multiplication_x: | `[]`                                 | List of actions to ignore- See below for more information           |
 
-```yml
-```
+### Webhooks
+
+| Name      |      Required      | Default | Description                   |
+|:----------|:------------------:|:--------|:------------------------------|
+| `name`    | :heavy_check_mark: |         | Name of the repository/team where this information should go to |
+| `url`     | :heavy_check_mark: |         | Url of the mattermost webhook |
+| `channel` | :heavy_check_mark: |         | Channel id like town-square from mattermost. This is where the information gets posted to. |
+
+When using `name` you can add `default` as a variable where everything is send to if it finds no other match. Also you can use `teamname` or `teamname/repositoryname` to have a better controll over the information like `stuvusIT` or `stuvusIT/mattermost-github-integration`
+
+### Ignore actions
+| Name       |      Required      | Default | Description                                             |
+|:-----------|:------------------:|:--------|:--------------------------------------------------------|
+| `category` | :heavy_check_mark: |         | Path to install the server on                           |
+| `actions`  | :heavy_check_mark: |         | List of actions to be ignored e.g `labeled`, `assigned` |
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
 ```yml
+hosts: all
+  become: true
+  vars:
+    mattermost_github_integration_install_path: /opt/mattermost-github-integration
+    mattermost_github_integration_secret: 0mHdpBa6SQdv5OUm
+    mattermost_github_integration_webhook_urls:
+      - name: default
+        url: https://chat.stuvus.de/hooks/0mHdpBa6SQdv5OUm
+        channel: it-bots
+      - name: teamname
+        url: https://chat.stuvus.de/hooks/0mHdpBa6SQdv5OUm
+        channel: it-bots
+    mattermost_github_integration_ignore_actions:
+      - category: issues
+        actions:
+          - labeled
+          - assigned
+  roles:
+    - mattermost-github-integration
 ```
 
 ## License
@@ -31,4 +71,4 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 
 ## Author Information
 
-- [Author Name (nickname)](github profile) _your-full-stuvus-email-address@stuvus.uni-stuttgart.de_
+- [Fritz Otlinghaus (Scriptkiddi)](https://github.com/scriptkiddi) _fritz.otlinghaus@stuvus.uni-stuttgart.de_

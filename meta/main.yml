@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  author: Insert author(s) here
-  description: Insert description here
+  author: Fritz Otlinghaus
+  description: A Bot to post github changes to mattermost
   company: stuvus (https://stuvus.uni-stuttgart.de)
 
   license: CC-BY-SA
@@ -17,6 +17,7 @@ galaxy_info:
         - artful
 
   galaxy_tags:
-    - Insert ansible galaxy tags here
+    - mattermost
+    - github
 
 dependencies: []

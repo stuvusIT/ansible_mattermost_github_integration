@@ -1,3 +1,31 @@
 ---
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - python
+    - python-flask
+    - python-requests
+    - python-pillow
 
-...
+- name: Clone reposity
+  git:
+    repo: 'https://github.com/softdevteam/mattermost-github-integration.git'
+    dest: "{{ mattermost_github_integration_install_path }}"
+    depth: 1
+
+- name: Copy config 
+  template:
+    src: config.py.j2
+    dest: "{{ mattermost_github_integration_install_path }}/mattermostgithub/config.py"
+  notify: restart service
+
+- name: Create mattermost-github-integration systemd service 
+  template:
+    src: systemd_file.j2
+    dest: /etc/systemd/system/mattermost-github-integration.service
+    owner: root
+    group: root
+    mode: 0664
+
+

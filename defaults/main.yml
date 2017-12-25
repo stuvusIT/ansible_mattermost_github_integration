@@ -1,0 +1,11 @@
+---
+mattermost_github_integration_install_path: /opt/mattermost-github-integration
+mattermost_github_integration_secret: ""
+mattermost_github_integration_server_hook: /
+mattermost_github_integration_server_address: 0.0.0.0
+mattermost_github_integration_server_port: 5000
+mattermost_github_integration_username: Github
+mattermost_github_integration_icon_url: ""
+mattermost_github_integration_webhook_urls: []
+mattermost_github_integration_show_avatars: True
+mattermost_github_integration_ignore_actions: []

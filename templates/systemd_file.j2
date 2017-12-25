@@ -1,0 +1,10 @@
+[Unit]
+Description=Mattermost Github integration
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python {{ mattermost_github_integration_install_path }}/server.py
+
+[Install]
+WantedBy=multi-user.target

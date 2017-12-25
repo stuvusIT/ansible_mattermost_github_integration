@@ -1,0 +1,7 @@
+---
+- name: Restart mattermost-github-integration service
+  service:
+    name: mattermost-github-integration
+    enabled: yes
+    state: restarted 
+  listen: "restart service"
