@@ -1,9 +1,11 @@
 [Unit]
-Description=Mattermost Github integration
+Description=Mattermost GitHub integration
 After=multi-user.target
 
 [Service]
 Type=simple
+User={{ mattermost_github_integration_user }}
+Group={{ mattermost_github_integration_group }}
 ExecStart=/usr/bin/python {{ mattermost_github_integration_install_path }}/server.py
 
 [Install]

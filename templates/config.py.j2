@@ -4,12 +4,11 @@ MATTERMOST_WEBHOOK_URLS = {
     {% for item in mattermost_github_integration_webhook_urls %}
         '{{ item.name }}' : ("{{ item.url }}", "{{ item.channel }}"),
     {% endfor %}
-
 }
 GITHUB_IGNORE_ACTIONS = {
     {% for item in mattermost_github_integration_ignore_actions %}
         "item.category": [{% for action in item.actions %}
-            "{{ action}}",
+            "{{ action }}",
         {% endfor %}],
     {% endfor %}
 }

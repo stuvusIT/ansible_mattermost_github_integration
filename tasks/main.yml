@@ -8,17 +8,21 @@
     - python-requests
     - python-pillow
 
-- name: Clone reposity
+- name: Clone repository
   git:
     repo: 'https://github.com/softdevteam/mattermost-github-integration.git'
     dest: "{{ mattermost_github_integration_install_path }}"
     depth: 1
+  become: yes
+  become_user: "{{ mattermost_github_integration_user }}"
 
-- name: Copy config 
+- name: Copy configuration file
   template:
     src: config.py.j2
     dest: "{{ mattermost_github_integration_install_path }}/mattermostgithub/config.py"
-  notify: restart service
+    owner: "{{ mattermost_github_integration_user }}"
+    group: "{{ mattermost_github_integration_group }}"
+  notify: Restart mattermost-github-integration service
 
 - name: Create mattermost-github-integration systemd service 
   template:
@@ -27,5 +31,3 @@
     owner: root
     group: root
     mode: 0664
-
-
