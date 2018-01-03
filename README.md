@@ -1,6 +1,6 @@
-# Mattermost-Github-integration
+# mattermost-github-integration
 
-This role sets up a mattermost github integration service which posts changes of an organization or repository to a mattermost channel.
+This role sets up a Mattermost GitHub integration service which posts changes of an organization or repository to a mattermost channel.
 For more information see [softdevteams repository](https://github.com/softdevteam/mattermost-github-integration)
 
 ## Requirements
