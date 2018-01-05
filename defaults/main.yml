@@ -11,3 +11,4 @@ mattermost_github_integration_show_avatars: True
 mattermost_github_integration_ignore_actions: []
 mattermost_github_integration_user: www-data
 mattermost_github_integration_group: www-data
+mattermost_github_integration_version: master

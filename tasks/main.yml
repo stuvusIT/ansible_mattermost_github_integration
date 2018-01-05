@@ -22,6 +22,8 @@
     dest: "{{ mattermost_github_integration_install_path }}/mattermostgithub/config.py"
     owner: "{{ mattermost_github_integration_user }}"
     group: "{{ mattermost_github_integration_group }}"
+    update: true
+    version: "{{ mattermost_github_integration_version }}"
   notify: Restart mattermost-github-integration service
 
 - name: Create mattermost-github-integration systemd service 
