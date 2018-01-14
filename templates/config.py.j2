@@ -1,0 +1,21 @@
+USERNAME = "{{ mattermost_github_integration_username }}"
+ICON_URL = "{{ mattermost_github_integration_icon_url }}"
+MATTERMOST_WEBHOOK_URLS = {
+    {% for item in mattermost_github_integration_webhook_urls %}
+        '{{ item.name }}' : ("{{ item.url }}", "{{ item.channel }}"),
+    {% endfor %}
+}
+GITHUB_IGNORE_ACTIONS = {
+    {% for item in mattermost_github_integration_ignore_actions %}
+        "item.category": [{% for action in item.actions %}
+            "{{ action }}",
+        {% endfor %}],
+    {% endfor %}
+}
+SECRET = "{{ mattermost_github_integration_secret }}"
+SHOW_AVATARS = {{ mattermost_github_integration_show_avatars | bool }}
+SERVER = {
+    'hook': "{{ mattermost_github_integration_server_hook }}",
+    'address': "{{ mattermost_github_integration_server_address }}",
+    'port': {{ mattermost_github_integration_server_port }},
+}
