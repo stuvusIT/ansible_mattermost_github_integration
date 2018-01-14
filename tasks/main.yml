@@ -13,6 +13,8 @@
     repo: 'https://github.com/softdevteam/mattermost-github-integration.git'
     dest: "{{ mattermost_github_integration_install_path }}"
     depth: 1
+    update: true
+    version: "{{ mattermost_github_integration_version }}"
   become: yes
   become_user: "{{ mattermost_github_integration_user }}"
 
@@ -22,8 +24,7 @@
     dest: "{{ mattermost_github_integration_install_path }}/mattermostgithub/config.py"
     owner: "{{ mattermost_github_integration_user }}"
     group: "{{ mattermost_github_integration_group }}"
-    update: true
-    version: "{{ mattermost_github_integration_version }}"
+    mode: 0660
   notify: Restart mattermost-github-integration service
 
 - name: Create mattermost-github-integration systemd service 

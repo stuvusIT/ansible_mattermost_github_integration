@@ -10,7 +10,7 @@ This role requires an apt based system like Ubuntu.
 
 | Name                                           | Required                 | Default                              | Description                                                                                                      |
 |:-----------------------------------------------|:------------------------:|:-------------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| `global_cache_dir`                             | :heavy_check_mark:       |                                      | Cache directory to download mattermost-github-integratoin files to                                               |
+| `global_cache_dir`                             | :heavy_check_mark:       |                                      | Cache directory to download mattermost-github-integration files to                                               |
 | `mattermost_github_integration_install_path`   | :heavy_multiplication_x: | `/opt/mattermost-github-integration` | Path to install the server on                                                                                    |
 | `mattermost_github_integration_secret`         | :heavy_multiplication_x: | `None`                               | Secret that is used to authenticate between GitHub and your server                                               |
 | `mattermost_github_integration_server_hook`    | :heavy_multiplication_x: | `/`                                  | The relative URL where the server listens on                                                                     |
@@ -27,20 +27,20 @@ This role requires an apt based system like Ubuntu.
 
 ### Webhooks
 
-| Name      |      Required      | Default | Description                                                                                |
-|:----------|:------------------:|:--------|:-------------------------------------------------------------------------------------------|
-| `name`    | :heavy_check_mark: |         | Name of the repository/team where this information should go to                            |
-| `url`     | :heavy_check_mark: |         | URL of the Mattermost webhook                                                              |
-| `channel` | :heavy_check_mark: |         | Channel ID like town-square from Mattermost. This is where the information gets posted to. |
+| Name      |      Required      | Description                                                                                |
+|:----------|:------------------:|:-------------------------------------------------------------------------------------------|
+| `name`    | :heavy_check_mark: | Name of the repository/team where this information should go to                            |
+| `url`     | :heavy_check_mark: | URL of the Mattermost webhook                                                              |
+| `channel` | :heavy_check_mark: | Channel ID like town-square from Mattermost. This is where the information gets posted to. |
 
 When using `name` you can add `default` as a variable where everything is send to if it finds no other match. Also you can use `teamname` or `teamname/repositoryname` to have a better control over the information like `stuvusIT` or `stuvusIT/mattermost-github-integration`
 
 ### Ignore actions
 
-| Name       |      Required      | Default | Description                                             |
-|:-----------|:------------------:|:--------|:--------------------------------------------------------|
-| `category` | :heavy_check_mark: |         | What category are we talking about, e.g `issues`        |
-| `actions`  | :heavy_check_mark: |         | List of actions to be ignored e.g `labeled`, `assigned` |
+| Name       |      Required      | Description                                             |
+|:-----------|:------------------:|:--------------------------------------------------------|
+| `category` | :heavy_check_mark: | What category are we talking about, e.g `issues`        |
+| `actions`  | :heavy_check_mark: | List of actions to be ignored e.g `labeled`, `assigned` |
 
 For all categories please see the [GitHub webhook page](https://developer.github.com/webhooks/#events)
 
