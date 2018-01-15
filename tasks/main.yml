@@ -8,6 +8,14 @@
     - python-requests
     - python-pillow
 
+- name: Create install folder
+  file:
+    path: "{{ mattermost_github_integration_install_path }}"
+    state: directory
+    owner: "{{ mattermost_github_integration_user }}"
+    group: "{{ mattermost_github_integration_group }}"
+    mode: 0755
+
 - name: Clone repository
   git:
     repo: 'https://github.com/softdevteam/mattermost-github-integration.git'
