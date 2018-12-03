@@ -1,12 +1,11 @@
 ---
 - name: Install required packages
   apt:
-    name: "{{ item }}"
-  with_items:
-    - python
-    - python-flask
-    - python-requests
-    - python-pillow
+    name:
+      - python
+      - python-flask
+      - python-requests
+      - python-pillow
 
 - name: Create install folder
   file:
