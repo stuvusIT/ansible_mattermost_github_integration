@@ -3,4 +3,4 @@
   service:
     name: mattermost-github-integration
     enabled: yes
-    state: restarted 
+    state: restarted
